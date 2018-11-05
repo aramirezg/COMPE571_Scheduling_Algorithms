@@ -59,19 +59,64 @@ def EDF(*args):
 
     lcmArray = [t1Array[1],t2Array[1],t3Array[1],t4Array[1],t5Array[1]]
 
-    deadlineArray = [t1Array[1],t2Array[1],t3Array[1],t4Array[1],t5Array[1]]
-    deadlineArray_int = string2Int(deadlineArray)
 
-    tasksMaxFreq = [t1Array[2],t2Array[2],t3Array[2],t4Array[2],t5Array[2]]
-    tasksMaxFreq_int = string2Int(tasksMaxFreq)
-    print(tasksMaxFreq_int)
+    t1Deadline_Ex = []
+    t2Deadline_Ex = []
+    t3Deadline_Ex = []
+    t4Deadline_Ex = []
+    t5Deadline_Ex = []
+    
+    t1Deadline_Ex = [t1Array[0], int(t1Array[1]), int(t1Array[2])]
+    t2Deadline_Ex = [t2Array[0], int(t2Array[1]), int(t2Array[2])]
+    t3Deadline_Ex = [t3Array[0], int(t3Array[1]), int(t3Array[2])]
+    t4Deadline_Ex = [t4Array[0], int(t4Array[1]), int(t4Array[2])]
+    t5Deadline_Ex = [t5Array[0], int(t5Array[1]), int(t5Array[2])]
+    
+    print(t1Deadline_Ex)
+    print(t2Deadline_Ex)
+    print(t3Deadline_Ex)
+
+    for i in range(7):
+        t = []
+        
+        if t2Deadline_Ex[1] < t1Deadline_Ex[1]:
+            
+            t = t1Deadline_Ex     
+            t1Deadline_Ex = t2Deadline_Ex
+            t2Deadline_Ex = t
+
+        elif t3Deadline_Ex[1] < t2Deadline_Ex[1]:
+            t = t2Deadline_Ex
+            t2Deadline_Ex = t3Deadline_Ex
+            t3Deadline_Ex = t
+
+        elif t4Deadline_Ex[1] < t3Deadline_Ex[1]:
+            t = t3Deadline_Ex
+            t3Deadline_Ex = t4Deadline_Ex
+            t4Deadline_Ex = t
+
+        elif t5Deadline_Ex[1] < t4Deadline_Ex[1]:
+            t = t4Deadline_Ex
+            t4Deadline_Ex = t5Deadline_Ex
+            t5Deadline_Ex = t
+        
+        print("sorted!")
+        print(i)
+        print(t1Deadline_Ex)
+        print(t2Deadline_Ex)
+        print(t3Deadline_Ex)
+        print(t4Deadline_Ex)
+        print(t5Deadline_Ex)
+    
+    
+    print("YES")
     
     lcmInts = string2Int(lcmArray)
     print("The LCM is: " + str(LCM(lcmInts)))
 
     #Assign priority accodring to dealines/periods
     #low number deadlines > high deadlines
-    print(deadlineArray_int)
+    
 
     
 
