@@ -14,9 +14,69 @@ import sys
 ##file.close()
 
 
+#method to turn array of strings into an array of integers
+def string2Int(stringArray):
+    list1 = stringArray
+    list2 = []
+
+    for i in range(len(list1)):
+        t = int(list1[i])
+        list2.append(t)
+    print("Converted string array to integer array")
+    return list2
+
+
+#LCM method to determine the LCM for the range of time for the scheduling
+def LCM(numArray):
+    
+    numArray.sort()
+        
+    combo = numArray[0] * numArray[1] * numArray[2] * numArray[3]
+
+    for x in range(numArray[3], combo + 1, numArray[3]):
+        if x % numArray[0] == 0 and x % numArray[1] == 0 and x % numArray[2] == 0:
+            return x
+    
+    
+
 #EDF method operates with Deadlines and Times(MAX FREQ 3rd column in input file)
-def EDF():
-    print("Testing like ASAP")
+def EDF(*args):
+
+    hArray = []
+    t1Array = []
+    t2Array = []
+    t3Array = []
+    t4Array = []
+    t5Array = []
+    lcmArray = []
+    
+    hArray = args[0]
+    t1Array = args[1]
+    t2Array = args[2]
+    t3Array = args[3]
+    t4Array = args[4]
+    t5Array = args[5]
+
+    lcmArray = [t1Array[1],t2Array[1],t3Array[1],t4Array[1],t5Array[1]]
+
+    deadlineArray = [t1Array[1],t2Array[1],t3Array[1],t4Array[1],t5Array[1]]
+    deadlineArray_int = string2Int(deadlineArray)
+
+    tasksMaxFreq = [t1Array[2],t2Array[2],t3Array[2],t4Array[2],t5Array[2]]
+    tasksMaxFreq_int = string2Int(tasksMaxFreq)
+    print(tasksMaxFreq_int)
+    
+    lcmInts = string2Int(lcmArray)
+    print("The LCM is: " + str(LCM(lcmInts)))
+
+    #Assign priority accodring to dealines/periods
+    #low number deadlines > high deadlines
+    print(deadlineArray_int)
+
+    
+
+    
+
 
 
 if __name__ == '__main__':
@@ -32,6 +92,7 @@ if __name__ == '__main__':
 
     inputFile = argList[1]
     algoSelect = argList[2]
+    #algoEE = argList[3]
 
     print("Reading " + inputFile+ "\n")
     print("The user has selected the " + algoSelect + " Scheduling Algorithm")
@@ -61,10 +122,22 @@ if __name__ == '__main__':
                     w4Array = tasks[4].split()
                     w5Array = tasks[5].split()
 
+                    #arrays to keep converter string arrays
+                    hIntArray = []
+                    w1IntArray = []
+                    w2IntArray = []
+                    w3IntArray = []
+                    w4IntArray = []
+                    w5IntArray = []
+
                     print("Header Array")
                     print(headerArray)
+
+                   #method string2Int makes integer array
+                    hIntArray = string2Int(headerArray)
+                    print(hIntArray)
                     for h in range(7):
-                        print(headerArray[h])
+                        print(hIntArray[h])
 
                     print("Task 1 Array")
                     print(w1Array)
@@ -92,13 +165,21 @@ if __name__ == '__main__':
                         print(w5Array[w5])
 
                     if algoSelect == 'EDF':
+                        #if algoEE == None:
                         ##Ideas
                         ##Pass arrays over and loop them in algo function
                         ##Write to output in algo function
-                        EDF()
+                        EDF(headerArray,w1Array,w2Array,w3Array,w4Array,w5Array)
+##                        elif algoEE == 'EE':
+##                            print("EDF EE selected")
                     
-                    
+                    if algoSelect == 'RM':
+                        #Call RM algo
+                        print("RM selected")
 
+##                    if algoSelect == 'EDF' and algoEE == 'EE':
+##                        print("EDF EE selected")
+##
 
                     h_first, h_second, h_third, h_fourth, h_fifth, h_sixth, h_seven = tasks[0].split()
 
@@ -132,9 +213,7 @@ if __name__ == '__main__':
                     lcmArray.append(w3_second)
                     lcmArray.append(w4_second)
                     lcmArray.append(w5_second)
-
-                    print(lcmArray)
-
+                    
                     #grabbing the first three columns of w1,w2,w3,w4, and w5 and placinf them into a string
                     #these will be handy to send to EDF and RM methods
                     #tasks run at max freq
