@@ -14,7 +14,9 @@ import sys
 ##file.close()
 
 
-#method to turn array of strings into an array of integers
+    
+
+
 def string2Int(stringArray):
     list1 = stringArray
     list2 = []
@@ -37,11 +39,47 @@ def LCM(numArray):
         if x % numArray[0] == 0 and x % numArray[1] == 0 and x % numArray[2] == 0:
             return x
     
+#RM check
+def RM_Util(*args):
+    hArray = []
+    t1Array = []
+    t2Array = []
+    t3Array = []
+    t4Array = []
+    t5Array = []
+    lcmArray = []
     
+    hArray = args[0]
+    t1Array = args[1]
+    t2Array = args[2]
+    t3Array = args[3]
+    t4Array = args[4]
+    t5Array = args[5]
 
-#EDF method operates with Deadlines and Times(MAX FREQ 3rd column in input file)
-def EDF(*args):
+    t1Deadline_Ex = []
+    t2Deadline_Ex = []
+    t3Deadline_Ex = []
+    t4Deadline_Ex = []
+    t5Deadline_Ex = []
 
+    
+    t1Deadline_Ex = [int(t1Array[1]), int(t1Array[2])]
+    t2Deadline_Ex = [int(t2Array[1]), int(t2Array[2])]
+    t3Deadline_Ex = [int(t3Array[1]), int(t3Array[2])]
+    t4Deadline_Ex = [int(t4Array[1]), int(t4Array[2])]
+    t5Deadline_Ex = [int(t5Array[1]), int(t5Array[2])]
+
+    totalUtil = (t1Deadline_Ex[1]/t1Deadline_Ex[0]) +(t2Deadline_Ex[1]/t2Deadline_Ex[0]) +(t3Deadline_Ex[1]/t3Deadline_Ex[0]) +(t4Deadline_Ex[1]/t4Deadline_Ex[0]) + (t5Deadline_Ex[1]/t5Deadline_Ex[0])
+    #totalUtil = 0.7
+    mu = int(hArray[0])*(2**(1/int(hArray[0]))-1)
+
+    if totalUtil > mu:
+        return 1
+    else:
+        return 0
+def RM(*args):
+
+    print("Starting RM")
     hArray = []
     t1Array = []
     t2Array = []
@@ -71,42 +109,77 @@ def EDF(*args):
     t3Deadline_Ex = [t3Array[0], int(t3Array[1]), int(t3Array[2])]
     t4Deadline_Ex = [t4Array[0], int(t4Array[1]), int(t4Array[2])]
     t5Deadline_Ex = [t5Array[0], int(t5Array[1]), int(t5Array[2])]
+
+
+##    totalPeriod = 1000
+##    for i in range(1,totalPeriod+1):
+##        print(i)
+##
+##        if(t1Deadline_Ex[1]<)
     
-    print(t1Deadline_Ex)
-    print(t2Deadline_Ex)
-    print(t3Deadline_Ex)
+    
 
-    for i in range(7):
-        t = []
-        
-        if t2Deadline_Ex[1] < t1Deadline_Ex[1]:
-            
-            t = t1Deadline_Ex     
-            t1Deadline_Ex = t2Deadline_Ex
-            t2Deadline_Ex = t
+def EDF_Util(*args):
+    
+    hArray = []
+    t1Array = []
+    t2Array = []
+    t3Array = []
+    t4Array = []
+    t5Array = []
+    lcmArray = []
+    
+    hArray = args[0]
+    t1Array = args[1]
+    t2Array = args[2]
+    t3Array = args[3]
+    t4Array = args[4]
+    t5Array = args[5]
 
-        elif t3Deadline_Ex[1] < t2Deadline_Ex[1]:
-            t = t2Deadline_Ex
-            t2Deadline_Ex = t3Deadline_Ex
-            t3Deadline_Ex = t
+    t1Deadline_Ex = []
+    t2Deadline_Ex = []
+    t3Deadline_Ex = []
+    t4Deadline_Ex = []
+    t5Deadline_Ex = []
 
-        elif t4Deadline_Ex[1] < t3Deadline_Ex[1]:
-            t = t3Deadline_Ex
-            t3Deadline_Ex = t4Deadline_Ex
-            t4Deadline_Ex = t
+    
+    t1Deadline_Ex = [int(t1Array[1]), int(t1Array[2])]
+    t2Deadline_Ex = [int(t2Array[1]), int(t2Array[2])]
+    t3Deadline_Ex = [int(t3Array[1]), int(t3Array[2])]
+    t4Deadline_Ex = [int(t4Array[1]), int(t4Array[2])]
+    t5Deadline_Ex = [int(t5Array[1]), int(t5Array[2])]
 
-        elif t5Deadline_Ex[1] < t4Deadline_Ex[1]:
-            t = t4Deadline_Ex
-            t4Deadline_Ex = t5Deadline_Ex
-            t5Deadline_Ex = t
-        
-        print("sorted!")
-        print(i)
-        print(t1Deadline_Ex)
-        print(t2Deadline_Ex)
-        print(t3Deadline_Ex)
-        print(t4Deadline_Ex)
-        print(t5Deadline_Ex)
+    totalUtil = (t1Deadline_Ex[1]/t1Deadline_Ex[0]) +(t2Deadline_Ex[1]/t2Deadline_Ex[0]) +(t3Deadline_Ex[1]/t3Deadline_Ex[0]) +(t4Deadline_Ex[1]/t4Deadline_Ex[0]) + (t5Deadline_Ex[1]/t5Deadline_Ex[0])
+    #totalUtil = 0.7
+    mu = 1
+
+    if totalUtil > mu:
+        return 1
+    else:
+        return 0
+
+#EDF method operates with Deadlines and Times(MAX FREQ 3rd column in input file)
+def EDF(*args):
+    print("Starting EDF")
+    hArray = []
+    t1Array = []
+    t2Array = []
+    t3Array = []
+    t4Array = []
+    t5Array = []
+    lcmArray = []
+    
+    hArray = args[0]
+    t1Array = args[1]
+    t2Array = args[2]
+    t3Array = args[3]
+    t4Array = args[4]
+    t5Array = args[5]
+
+    lcmArray = [t1Array[1],t2Array[1],t3Array[1],t4Array[1],t5Array[1]]
+
+
+    
     
     
     print("YES")
@@ -169,11 +242,7 @@ if __name__ == '__main__':
 
                     #arrays to keep converter string arrays
                     hIntArray = []
-                    w1IntArray = []
-                    w2IntArray = []
-                    w3IntArray = []
-                    w4IntArray = []
-                    w5IntArray = []
+                    
 
                     print("Header Array")
                     print(headerArray)
@@ -208,82 +277,87 @@ if __name__ == '__main__':
                     print(w5Array)
                     for w5 in range(6):
                         print(w5Array[w5])
+                        
+                    #Sorting the Deadlines by Ascending Order for priority
+                    #Done regardless of EDF or RM
+                    t1Deadline_Ex = []
+                    t2Deadline_Ex = []
+                    t3Deadline_Ex = []
+                    t4Deadline_Ex = []
+                    t5Deadline_Ex = []
+                    
+                    t1Deadline_Ex = [w1Array[0], int(w1Array[1]), int(w1Array[2])]
+                    t2Deadline_Ex = [w2Array[0], int(w2Array[1]), int(w2Array[2])]
+                    t3Deadline_Ex = [w3Array[0], int(w3Array[1]), int(w3Array[2])]
+                    t4Deadline_Ex = [w4Array[0], int(w4Array[1]), int(w4Array[2])]
+                    t5Deadline_Ex = [w5Array[0], int(w5Array[1]), int(w5Array[2])]
+                                  
+                    print(t1Deadline_Ex)
+                    print(t2Deadline_Ex)
+                    print(t3Deadline_Ex)
 
+                        
+                    for i in range(hIntArray[0]):
+                    
+                        for j in range(0, hIntArray[0] - i - 1):
+                            t = []
+                            if t2Deadline_Ex[1] < t1Deadline_Ex[1]:
+                                t = t1Deadline_Ex     
+                                t1Deadline_Ex = t2Deadline_Ex
+                                t2Deadline_Ex = t
+
+                            elif t3Deadline_Ex[1] < t2Deadline_Ex[1]:
+                                t = t2Deadline_Ex
+                                t2Deadline_Ex = t3Deadline_Ex
+                                t3Deadline_Ex = t
+
+                            elif t4Deadline_Ex[1] < t3Deadline_Ex[1]:
+                                t = t3Deadline_Ex
+                                t3Deadline_Ex = t4Deadline_Ex
+                                t4Deadline_Ex = t
+
+                            elif t5Deadline_Ex[1] < t4Deadline_Ex[1]:
+                                t = t4Deadline_Ex
+                                t4Deadline_Ex = t5Deadline_Ex
+                                t5Deadline_Ex = t
+                            
+                            
+                    ##Sorting END
+
+                    
                     if algoSelect == 'EDF':
                         #if algoEE == None:
                         ##Ideas
                         ##Pass arrays over and loop them in algo function
                         ##Write to output in algo function
-                        EDF(headerArray,w1Array,w2Array,w3Array,w4Array,w5Array)
+                        check = EDF_Util(headerArray,w1Array,w2Array,w3Array,w4Array,w5Array)
+
+                        if not check:
+                            print("EDF selected")
+                            EDF(headerArray,t1Deadline_Ex, t2Deadline_Ex, t3Deadline_Ex, t4Deadline_Ex, t5Deadline_Ex)
+                            
+                            
+                        else:
+                            print("No Feasible Schedule")
+                        
 ##                        elif algoEE == 'EE':
 ##                            print("EDF EE selected")
                     
                     if algoSelect == 'RM':
                         #Call RM algo
-                        print("RM selected")
-
+                        check = RM_Util(headerArray,w1Array,w2Array,w3Array,w4Array,w5Array)
+                        if not check:
+                            print("RM selected")
+                            RM(headerArray,t1Deadline_Ex, t2Deadline_Ex, t3Deadline_Ex, t4Deadline_Ex, t5Deadline_Ex)
+                            
+                        else:
+                            print("No Feasible Schedule")
+##
 ##                    if algoSelect == 'EDF' and algoEE == 'EE':
 ##                        print("EDF EE selected")
 ##
+##                    if algoSelect == 'RM' and algoEE == 'EE':
+##                        print("RM EE selected")
 
-                    h_first, h_second, h_third, h_fourth, h_fifth, h_sixth, h_seven = tasks[0].split()
 
-                    w1_first, w1_second, w1_third, w1_fourth, w1_fifth, w1_sixth = tasks[1].split()
-
-                    w2_first, w2_second, w2_third, w2_fourth, w2_fifth, w2_sixth = tasks[2].split()
-
-                    w3_first, w3_second, w3_third, w3_fourth, w3_fifth, w3_sixth = tasks[3].split()
-
-                    w4_first, w4_second, w4_third, w4_fourth, w4_fifth, w4_sixth = tasks[4].split()
-
-                    w5_first, w5_second, w5_third, w5_fourth, w5_fifth, w5_sixth = tasks[5].split()
                     
-                    fileOut.write(h_first)
-                    fileOut.write(' ')
-                    fileOut.write(h_second)
-                    fileOut.write(' ')
-                    fileOut.write(h_third)
-                    fileOut.write(' ')
-                    fileOut.write(h_fourth)
-                    fileOut.write(' ')
-                    fileOut.write(h_fifth)
-                    fileOut.write(' ')
-                    fileOut.write(h_sixth)
-                    fileOut.write(' ')
-                    fileOut.write(h_seven)
-
-                    lcmArray = []
-                    lcmArray.append(w1_second)
-                    lcmArray.append(w2_second)
-                    lcmArray.append(w3_second)
-                    lcmArray.append(w4_second)
-                    lcmArray.append(w5_second)
-                    
-                    #grabbing the first three columns of w1,w2,w3,w4, and w5 and placinf them into a string
-                    #these will be handy to send to EDF and RM methods
-                    #tasks run at max freq
-                    w1ThreeCol = []
-                    w2ThreeCol = []
-                    w3ThreeCol = []
-                    w4ThreeCol = []
-                    w5ThreeCol = []
-
-                    w1ThreeCol.append(w1_first)
-                    w1ThreeCol.append(w1_second)
-                    w1ThreeCol.append(w1_third)
-
-                    w2ThreeCol.append(w2_first)
-                    w2ThreeCol.append(w2_second)
-                    w2ThreeCol.append(w2_third)
-
-                    w3ThreeCol.append(w3_first)
-                    w3ThreeCol.append(w3_second)
-                    w3ThreeCol.append(w3_third)
-
-                    w4ThreeCol.append(w4_first)
-                    w4ThreeCol.append(w4_second)
-                    w4ThreeCol.append(w4_third)
-
-                    w5ThreeCol.append(w5_first)
-                    w5ThreeCol.append(w5_second)
-                    w5ThreeCol.append(w5_third)
