@@ -14,9 +14,6 @@ import sys
 ##file.close()
 
 
-    
-
-
 def string2Int(stringArray):
     list1 = stringArray
     list2 = []
@@ -41,74 +38,39 @@ def LCM(numArray):
     
 #RM check
 def RM_Util(*args):
-    hArray = []
-    t1Array = []
-    t2Array = []
-    t3Array = []
-    t4Array = []
-    t5Array = []
-    lcmArray = []
-    
+
     hArray = args[0]
-    t1Array = args[1]
-    t2Array = args[2]
-    t3Array = args[3]
-    t4Array = args[4]
-    t5Array = args[5]
+    t1Deadline_Ex = args[1]
+    t2Deadline_Ex = args[2]
+    t3Deadline_Ex = args[3]
+    t4Deadline_Ex = args[4]
+    t5Deadline_Ex = args[5]
 
-    t1Deadline_Ex = []
-    t2Deadline_Ex = []
-    t3Deadline_Ex = []
-    t4Deadline_Ex = []
-    t5Deadline_Ex = []
-
-    
-    t1Deadline_Ex = [int(t1Array[1]), int(t1Array[2])]
-    t2Deadline_Ex = [int(t2Array[1]), int(t2Array[2])]
-    t3Deadline_Ex = [int(t3Array[1]), int(t3Array[2])]
-    t4Deadline_Ex = [int(t4Array[1]), int(t4Array[2])]
-    t5Deadline_Ex = [int(t5Array[1]), int(t5Array[2])]
-
-    totalUtil = (t1Deadline_Ex[1]/t1Deadline_Ex[0]) +(t2Deadline_Ex[1]/t2Deadline_Ex[0]) +(t3Deadline_Ex[1]/t3Deadline_Ex[0]) +(t4Deadline_Ex[1]/t4Deadline_Ex[0]) + (t5Deadline_Ex[1]/t5Deadline_Ex[0])
-    #totalUtil = 0.7
+    totalUtil = (int(t1Deadline_Ex[2])/int(t1Deadline_Ex[1])) + (int(t2Deadline_Ex[2])/int(t2Deadline_Ex[1])) + (int(t3Deadline_Ex[2])/int(t3Deadline_Ex[1])) + (int(t4Deadline_Ex[2])/int(t4Deadline_Ex[1])) + (int(t5Deadline_Ex[2])/int(t5Deadline_Ex[1]))
+    print(totalUtil)
     mu = int(hArray[0])*(2**(1/int(hArray[0]))-1)
+    print(mu)
 
     if totalUtil > mu:
         return 1
     else:
         return 0
+
 def RM(*args):
 
     print("Starting RM")
-    hArray = []
-    t1Array = []
-    t2Array = []
-    t3Array = []
-    t4Array = []
-    t5Array = []
-    lcmArray = []
-    
+
     hArray = args[0]
-    t1Array = args[1]
-    t2Array = args[2]
-    t3Array = args[3]
-    t4Array = args[4]
-    t5Array = args[5]
+    t1Deadline_Ex = args[1]
+    t2Deadline_Ex = args[2]
+    t3Deadline_Ex = args[3]
+    t4Deadline_Ex = args[4]
+    t5Deadline_Ex = args[5]
 
-    lcmArray = [t1Array[1],t2Array[1],t3Array[1],t4Array[1],t5Array[1]]
+    lcmArray = [t1Deadline_Ex[1], t2Deadline_Ex[1], t3Deadline_Ex[1], t4Deadline_Ex[1], t5Deadline_Ex[1]]
 
-
-    t1Deadline_Ex = []
-    t2Deadline_Ex = []
-    t3Deadline_Ex = []
-    t4Deadline_Ex = []
-    t5Deadline_Ex = []
-    
-    t1Deadline_Ex = [t1Array[0], int(t1Array[1]), int(t1Array[2])]
-    t2Deadline_Ex = [t2Array[0], int(t2Array[1]), int(t2Array[2])]
-    t3Deadline_Ex = [t3Array[0], int(t3Array[1]), int(t3Array[2])]
-    t4Deadline_Ex = [t4Array[0], int(t4Array[1]), int(t4Array[2])]
-    t5Deadline_Ex = [t5Array[0], int(t5Array[1]), int(t5Array[2])]
+    lcmInts = string2Int(lcmArray)
+    print("The LCM is: " + str(LCM(lcmInts)))
 
 
 ##    totalPeriod = 1000
@@ -121,37 +83,17 @@ def RM(*args):
 
 def EDF_Util(*args):
     
-    hArray = []
-    t1Array = []
-    t2Array = []
-    t3Array = []
-    t4Array = []
-    t5Array = []
-    lcmArray = []
-    
     hArray = args[0]
-    t1Array = args[1]
-    t2Array = args[2]
-    t3Array = args[3]
-    t4Array = args[4]
-    t5Array = args[5]
+    t1Deadline_Ex = args[1]
+    t2Deadline_Ex = args[2]
+    t3Deadline_Ex = args[3]
+    t4Deadline_Ex = args[4]
+    t5Deadline_Ex = args[5]
 
-    t1Deadline_Ex = []
-    t2Deadline_Ex = []
-    t3Deadline_Ex = []
-    t4Deadline_Ex = []
-    t5Deadline_Ex = []
-
-    
-    t1Deadline_Ex = [int(t1Array[1]), int(t1Array[2])]
-    t2Deadline_Ex = [int(t2Array[1]), int(t2Array[2])]
-    t3Deadline_Ex = [int(t3Array[1]), int(t3Array[2])]
-    t4Deadline_Ex = [int(t4Array[1]), int(t4Array[2])]
-    t5Deadline_Ex = [int(t5Array[1]), int(t5Array[2])]
-
-    totalUtil = (t1Deadline_Ex[1]/t1Deadline_Ex[0]) +(t2Deadline_Ex[1]/t2Deadline_Ex[0]) +(t3Deadline_Ex[1]/t3Deadline_Ex[0]) +(t4Deadline_Ex[1]/t4Deadline_Ex[0]) + (t5Deadline_Ex[1]/t5Deadline_Ex[0])
-    #totalUtil = 0.7
+    totalUtil = (int(t1Deadline_Ex[2])/int(t1Deadline_Ex[1])) + (int(t2Deadline_Ex[2])/int(t2Deadline_Ex[1])) + (int(t3Deadline_Ex[2])/int(t3Deadline_Ex[1])) + (int(t4Deadline_Ex[2])/int(t4Deadline_Ex[1])) + (int(t5Deadline_Ex[2])/int(t5Deadline_Ex[1]))
+    print(totalUtil)
     mu = 1
+    print(mu)
 
     if totalUtil > mu:
         return 1
@@ -161,40 +103,21 @@ def EDF_Util(*args):
 #EDF method operates with Deadlines and Times(MAX FREQ 3rd column in input file)
 def EDF(*args):
     print("Starting EDF")
-    hArray = []
-    t1Array = []
-    t2Array = []
-    t3Array = []
-    t4Array = []
-    t5Array = []
-    lcmArray = []
-    
+
     hArray = args[0]
-    t1Array = args[1]
-    t2Array = args[2]
-    t3Array = args[3]
-    t4Array = args[4]
-    t5Array = args[5]
+    t1Deadline_Ex = args[1]
+    t2Deadline_Ex = args[2]
+    t3Deadline_Ex = args[3]
+    t4Deadline_Ex = args[4]
+    t5Deadline_Ex = args[5]
 
-    lcmArray = [t1Array[1],t2Array[1],t3Array[1],t4Array[1],t5Array[1]]
-
-
-    
-    
-    
-    print("YES")
+    lcmArray = [t1Deadline_Ex[1], t2Deadline_Ex[1], t3Deadline_Ex[1], t4Deadline_Ex[1], t5Deadline_Ex[1]]
     
     lcmInts = string2Int(lcmArray)
     print("The LCM is: " + str(LCM(lcmInts)))
 
     #Assign priority accodring to dealines/periods
     #low number deadlines > high deadlines
-    
-
-    
-
-    
-
 
 
 if __name__ == '__main__':
@@ -208,9 +131,19 @@ if __name__ == '__main__':
 
     argList = sys.argv
 
-    inputFile = argList[1]
-    algoSelect = argList[2]
-    #algoEE = argList[3]
+    if argList[1:]:
+        inputFile = argList[1]
+        print('argument1:', inputFile)
+        
+        if argList[2:]:
+            algoSelect = argList[2]
+            print('argument2:', algoSelect)
+
+            if argList[3:]:
+                algoEE = argList[3]
+                print('argument3:', algoEE)
+
+    print('')
 
     print("Reading " + inputFile+ "\n")
     print("The user has selected the " + algoSelect + " Scheduling Algorithm")
@@ -226,13 +159,6 @@ if __name__ == '__main__':
                         #results = re.findall(r"[-+]?\d*\.\d+|\d+", lines)
                         tasks.append(lines)
 
-                    headerArray = []
-                    w1Array = []
-                    w2Array = []
-                    w3Array = []
-                    w4Array = []
-                    w5Array = []
-
                     headerArray = tasks[0].split()
                     w1Array = tasks[1].split()
                     w2Array = tasks[2].split()
@@ -240,63 +166,44 @@ if __name__ == '__main__':
                     w4Array = tasks[4].split()
                     w5Array = tasks[5].split()
 
+                    print('')
+
                     #arrays to keep converter string arrays
                     hIntArray = []
-                    
-
                     print("Header Array")
                     print(headerArray)
 
                    #method string2Int makes integer array
                     hIntArray = string2Int(headerArray)
                     print(hIntArray)
-                    for h in range(7):
-                        print(hIntArray[h])
+
+                    print('')
 
                     print("Task 1 Array")
                     print(w1Array)
-                    for w1 in range(6):
-                        print(w1Array[w1])
 
                     print("Task 2 Array")
                     print(w2Array)
-                    for w2 in range(6):
-                        print(w2Array[w2])
 
                     print("Task 3 Array")
                     print(w3Array)
-                    for w3 in range(6):
-                        print(w3Array[w3])
 
                     print("Task 4 Array")
                     print(w4Array)
-                    for w4 in range(6):
-                        print(w4Array[w4])
 
                     print("Task 5 Array")
                     print(w5Array)
-                    for w5 in range(6):
-                        print(w5Array[w5])
+
+                    print('')
                         
                     #Sorting the Deadlines by Ascending Order for priority
-                    #Done regardless of EDF or RM
-                    t1Deadline_Ex = []
-                    t2Deadline_Ex = []
-                    t3Deadline_Ex = []
-                    t4Deadline_Ex = []
-                    t5Deadline_Ex = []
-                    
+                    #Done regardless of EDF or RM                    
                     t1Deadline_Ex = [w1Array[0], int(w1Array[1]), int(w1Array[2])]
                     t2Deadline_Ex = [w2Array[0], int(w2Array[1]), int(w2Array[2])]
                     t3Deadline_Ex = [w3Array[0], int(w3Array[1]), int(w3Array[2])]
                     t4Deadline_Ex = [w4Array[0], int(w4Array[1]), int(w4Array[2])]
                     t5Deadline_Ex = [w5Array[0], int(w5Array[1]), int(w5Array[2])]
-                                  
-                    print(t1Deadline_Ex)
-                    print(t2Deadline_Ex)
-                    print(t3Deadline_Ex)
 
-                        
                     for i in range(hIntArray[0]):
                     
                         for j in range(0, hIntArray[0] - i - 1):
@@ -320,44 +227,44 @@ if __name__ == '__main__':
                                 t = t4Deadline_Ex
                                 t4Deadline_Ex = t5Deadline_Ex
                                 t5Deadline_Ex = t
-                            
-                            
-                    ##Sorting END
-
                     
+                    print("Sorted Arrays")
+                    print(t1Deadline_Ex)
+                    print(t2Deadline_Ex)
+                    print(t3Deadline_Ex)
+                    print(t4Deadline_Ex)
+                    print(t5Deadline_Ex)
+
+                    print('')
+                                            
+                    ##Sorting END   
+
+                    #scheduling algorithms                    
                     if algoSelect == 'EDF':
-                        #if algoEE == None:
+                        if argList[3:] and algoEE == 'EE':
+                            print('HEE HEE')
+
                         ##Ideas
                         ##Pass arrays over and loop them in algo function
                         ##Write to output in algo function
-                        check = EDF_Util(headerArray,w1Array,w2Array,w3Array,w4Array,w5Array)
-
-                        if not check:
-                            print("EDF selected")
+                        print("EDF selected")
+                        check_Util = EDF_Util(headerArray,t1Deadline_Ex, t2Deadline_Ex, t3Deadline_Ex, t4Deadline_Ex, t5Deadline_Ex)
+                        if not check_Util:
                             EDF(headerArray,t1Deadline_Ex, t2Deadline_Ex, t3Deadline_Ex, t4Deadline_Ex, t5Deadline_Ex)
-                            
-                            
                         else:
                             print("No Feasible Schedule")
-                        
-##                        elif algoEE == 'EE':
-##                            print("EDF EE selected")
                     
                     if algoSelect == 'RM':
+                        if argList[3:] and algoEE == 'EE':
+                            print('HEE HEE')
+
                         #Call RM algo
-                        check = RM_Util(headerArray,w1Array,w2Array,w3Array,w4Array,w5Array)
-                        if not check:
-                            print("RM selected")
+                        print("RM selected")
+                        check_Util = RM_Util(headerArray,t1Deadline_Ex, t2Deadline_Ex, t3Deadline_Ex, t4Deadline_Ex, t5Deadline_Ex)
+                        if not check_Util:
                             RM(headerArray,t1Deadline_Ex, t2Deadline_Ex, t3Deadline_Ex, t4Deadline_Ex, t5Deadline_Ex)
-                            
                         else:
                             print("No Feasible Schedule")
-##
-##                    if algoSelect == 'EDF' and algoEE == 'EE':
-##                        print("EDF EE selected")
-##
-##                    if algoSelect == 'RM' and algoEE == 'EE':
-##                        print("RM EE selected")
 
 
                     
