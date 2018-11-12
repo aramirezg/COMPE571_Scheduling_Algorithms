@@ -43,10 +43,8 @@ def RM_Util(*args):
     t1Deadline_Ex = args[1]
     t2Deadline_Ex = args[2]
     t3Deadline_Ex = args[3]
-    t4Deadline_Ex = args[4]
-    t5Deadline_Ex = args[5]
 
-    totalUtil = (int(t1Deadline_Ex[2])/int(t1Deadline_Ex[1])) + (int(t2Deadline_Ex[2])/int(t2Deadline_Ex[1])) + (int(t3Deadline_Ex[2])/int(t3Deadline_Ex[1])) + (int(t4Deadline_Ex[2])/int(t4Deadline_Ex[1])) + (int(t5Deadline_Ex[2])/int(t5Deadline_Ex[1]))
+    totalUtil = (int(t1Deadline_Ex[2])/int(t1Deadline_Ex[1])) + (int(t2Deadline_Ex[2])/int(t2Deadline_Ex[1])) + (int(t3Deadline_Ex[2])/int(t3Deadline_Ex[1]))
     print(totalUtil)
     mu = int(hArray[0])*(2**(1/int(hArray[0]))-1)
     print(mu)
@@ -65,13 +63,10 @@ def RM(*args):
         t1Deadline_Ex = args[1]
         t2Deadline_Ex = args[2]
         t3Deadline_Ex = args[3]
-        t4Deadline_Ex = args[4]
-        t5Deadline_Ex = args[5]
 
-        lcmArray = [t1Deadline_Ex[1], t2Deadline_Ex[1], t3Deadline_Ex[1], t4Deadline_Ex[1], t5Deadline_Ex[1]]
-
-        lcmInts = string2Int(lcmArray)
-        print("The LCM is: " + str(LCM(lcmInts)))
+        #lcmArray = [t1Deadline_Ex[1], t2Deadline_Ex[1], t3Deadline_Ex[1]]
+        #lcmInts = string2Int(lcmArray)
+        #print("The LCM is: " + str(LCM(lcmInts)))
 
         t1Runtime = 0
         newt1Deadline_Ex = t1Deadline_Ex[1]
@@ -82,15 +77,9 @@ def RM(*args):
         t3Runtime = 0
         newt3Deadline_Ex = t3Deadline_Ex[1]
 
-        t4Runtime = 0
-        newt4Deadline_Ex = t4Deadline_Ex[1]
-
-        t5Runtime = 0
-        newt5Deadline_Ex = t5Deadline_Ex[1]
-
     ##35 times within 300 time units
 
-        totalPeriod = 1000
+        totalPeriod = 36
         done = 0
         print("newt1Deadline_Ex:", newt1Deadline_Ex)
         
@@ -101,101 +90,20 @@ def RM(*args):
             
             if(t1Runtime < t1Deadline_Ex[2] and i < newt1Deadline_Ex): #if runtime < execution time and i < deadline
                 t1Runtime = t1Runtime + 1
-                print(t1Deadline_Ex[0]," RunTime:", t1Runtime)
-                
-                if(t1Runtime == 1):
-                    start = t1Runtime
-                    print(t1Deadline_Ex[0]," Execution Start:", start, "\n")
-                    fileOut.write(str(i))
-                    fileOut.write(" ")
-                    fileOut.write(t1Deadline_Ex[0])
-                    fileOut.write(" ")
-                    fileOut.write(Frequency)
-                    fileOut.write(" ")
-                if(t1Runtime == t1Deadline_Ex[2]):
-                    
-                    fileOut.write(str(i))
-                    fileOut.write(" ")
-                    print(t1Deadline_Ex[0]," Execution End:", i , "\n")
-                    fileOut.write("\n")
-                    
+                print(t1Deadline_Ex[0]," RunTime:", t1Runtime)                    
                
             elif(t2Runtime < t2Deadline_Ex[2] and i < newt2Deadline_Ex): #if runtime < execution time and i < deadline
                 t2Runtime = t2Runtime + 1
                 print(t2Deadline_Ex[0]," RunTime:", t2Runtime)
-
-                if(t2Runtime == 1):           
-                    print(t2Deadline_Ex[0]," Execution Start:", i, "\n")
-                    fileOut.write(str(i))
-                    fileOut.write(" ")
-                    fileOut.write(t2Deadline_Ex[0])
-                    fileOut.write(" ")
-                    fileOut.write(Frequency)
-                    fileOut.write(" ")
-                if(t2Runtime == t2Deadline_Ex[2]):
-                    fileOut.write(str(i))
-                    fileOut.write(" ")
-                    print(t2Deadline_Ex[0]," Execution End:", i , "\n")
-                    fileOut.write("\n")
                     
             elif(t3Runtime < t3Deadline_Ex[2] and i < newt3Deadline_Ex): #if runtime < execution time and i < deadline
                 t3Runtime = t3Runtime + 1
                 print(t3Deadline_Ex[0], " RunTime:", t3Runtime)
 
-                if(t3Runtime == 1):
-                    print(t3Deadline_Ex[0]," Execution Start:", i, "\n")
-                    fileOut.write(str(i))
-                    fileOut.write(" ")
-                    fileOut.write(t3Deadline_Ex[0])
-                    fileOut.write(" ")
-                    fileOut.write(Frequency)
-                    fileOut.write(" ")
-                if(t3Runtime == t3Deadline_Ex[2]):
-                    fileOut.write(str(i))
-                    fileOut.write(" ")
-                    print(t3Deadline_Ex[0]," Execution End:", i , "\n")
-                    fileOut.write("\n")
-                    
-                    
-            elif(t4Runtime < t4Deadline_Ex[2] and i < newt4Deadline_Ex): #if runtime < execution time and i < deadline
-                t4Runtime = t4Runtime + 1
-                print(t4Deadline_Ex[0]," RunTime:", t4Runtime)
-
-                if(t4Runtime == 1):           
-                    print(t4Deadline_Ex[0], " Execution Start:", i, "\n")
-                    fileOut.write(str(i))
-                    fileOut.write(" ")
-                    fileOut.write(t4Deadline_Ex[0])
-                    fileOut.write(" ")
-                    fileOut.write(Frequency)
-                    fileOut.write(" ")
-                if(t4Runtime == t4Deadline_Ex[2]):
-                    fileOut.write(str(i))
-                    fileOut.write(" ")
-                    print(t4Deadline_Ex[0], " Execution End:", i , "\n")
-                    fileOut.write("\n")
-                
-            elif(t5Runtime < t5Deadline_Ex[2] and i < newt5Deadline_Ex): #if runtime < execution time and i < deadline
-                t5Runtime = t5Runtime + 1
-                print(t5Deadline_Ex[0]," RunTime:", t5Runtime)
-
-                if(t5Runtime == 1):           
-                    print(t5Deadline_Ex[0]," Execution Start:", i, "\n")
-                    fileOut.write(str(i))
-                    fileOut.write(" ")
-                    fileOut.write(t5Deadline_Ex[0])
-                    fileOut.write(" ")
-                    fileOut.write(Frequency)
-                    fileOut.write(" ")
-                if(t5Runtime == t5Deadline_Ex[2]):
-                    fileOut.write(str(i))
-                    fileOut.write(" ")
-                    print(t5Deadline_Ex[0]," Execution End:", i , "\n")
-                    fileOut.write("\n")
             else:
                 print("Idle")
+                
 
-            
             if(i == newt1Deadline_Ex): #if i == deadline, calculate new deadline and reset runtime
                 newt1Deadline_Ex = newt1Deadline_Ex + t1Deadline_Ex[1]
                 print("new", t1Deadline_Ex[0],"Deadline:", newt1Deadline_Ex)
@@ -211,32 +119,14 @@ def RM(*args):
                 print("new",t3Deadline_Ex[0],"Deadline:", newt3Deadline_Ex)
                 t3Runtime = 0
 
-            if(i == newt4Deadline_Ex): #if i == deadline, calculate new deadline and reset runtime
-                newt4Deadline_Ex = newt4Deadline_Ex + t4Deadline_Ex[1]
-                print("new", t4Deadline_Ex[0],"Deadline:", newt4Deadline_Ex)
-                t4Runtime = 0
-
-            if(i == newt5Deadline_Ex): #if i == deadline, calculate new deadline and reset runtime
-                newt5Deadline_Ex = newt5Deadline_Ex + t5Deadline_Ex[1]
-                print("new", t5Deadline_Ex[0],"Deadline:", newt5Deadline_Ex)
-                t5Runtime = 0
-
-        
-        
-                
-    
-    
-
 def EDF_Util(*args):
     
     hArray = args[0]
     t1Deadline_Ex = args[1]
     t2Deadline_Ex = args[2]
     t3Deadline_Ex = args[3]
-    t4Deadline_Ex = args[4]
-    t5Deadline_Ex = args[5]
 
-    totalUtil = (int(t1Deadline_Ex[2])/int(t1Deadline_Ex[1])) + (int(t2Deadline_Ex[2])/int(t2Deadline_Ex[1])) + (int(t3Deadline_Ex[2])/int(t3Deadline_Ex[1])) + (int(t4Deadline_Ex[2])/int(t4Deadline_Ex[1])) + (int(t5Deadline_Ex[2])/int(t5Deadline_Ex[1]))
+    totalUtil = (int(t1Deadline_Ex[2])/int(t1Deadline_Ex[1])) + (int(t2Deadline_Ex[2])/int(t2Deadline_Ex[1])) + (int(t3Deadline_Ex[2])/int(t3Deadline_Ex[1]))
     print(totalUtil)
     mu = 1
     print(mu)
@@ -256,13 +146,6 @@ def EDF(*args):
         t1Deadline_Ex = args[1]
         t2Deadline_Ex = args[2]
         t3Deadline_Ex = args[3]
-        t4Deadline_Ex = args[4]
-        t5Deadline_Ex = args[5]
-
-        lcmArray = [t1Deadline_Ex[1], t2Deadline_Ex[1], t3Deadline_Ex[1], t4Deadline_Ex[1], t5Deadline_Ex[1]]
-
-        lcmInts = string2Int(lcmArray)
-        print("The LCM is: " + str(LCM(lcmInts)))
 
         t1Runtime = 0
         newt1Deadline_Ex = t1Deadline_Ex[1]
@@ -273,15 +156,9 @@ def EDF(*args):
         t3Runtime = 0
         newt3Deadline_Ex = t3Deadline_Ex[1]
 
-        t4Runtime = 0
-        newt4Deadline_Ex = t4Deadline_Ex[1]
-
-        t5Runtime = 0
-        newt5Deadline_Ex = t5Deadline_Ex[1]
-
     ##35 times within 300 time units
 
-        totalPeriod = 1000
+        totalPeriod = 36
         done = 0
         print("newt1Deadline_Ex:", newt1Deadline_Ex)
         
@@ -294,8 +171,6 @@ def EDF(*args):
             t1EDF_rem = newt1Deadline_Ex - i
             t2EDF_rem = newt2Deadline_Ex - i
             t3EDF_rem = newt3Deadline_Ex - i
-            t4EDF_rem = newt4Deadline_Ex - i
-            t5EDF_rem = newt5Deadline_Ex - i
 
             #when the runtime equals execution time, add the deadline to the remaining time 
             if(t1Runtime == t1Deadline_Ex[2]):
@@ -304,24 +179,16 @@ def EDF(*args):
                 t2EDF_rem = t2EDF_rem + t2Deadline_Ex[1]
             if(t3Runtime == t3Deadline_Ex[2]):
                 t3EDF_rem = t3EDF_rem + t3Deadline_Ex[1]
-            if(t4Runtime == t4Deadline_Ex[2]):
-                t4EDF_rem = t4EDF_rem + t4Deadline_Ex[1]
-            if(t5Runtime == t5Deadline_Ex[2]):
-                t5EDF_rem = t5EDF_rem + t5Deadline_Ex[1]
 
             print("t1 remainder:", t1EDF_rem)
             print("t2 remainder:", t2EDF_rem)
             print("t3 remainder:", t3EDF_rem)
-            print("t4 remainder:", t4EDF_rem)
-            print("t5 remainder:", t5EDF_rem)
 
             #determine whether a task has an earlier deadline than another task
-            #if remaining deadline is equal, prioritize the task with least period
-            t1EDF_rem_compare = t1EDF_rem <= t2EDF_rem or t1EDF_rem <= t3EDF_rem or t1EDF_rem <= t4EDF_rem or t1EDF_rem <= t5EDF_rem
-            t2EDF_rem_compare = t2EDF_rem <= t1EDF_rem or t2EDF_rem <= t3EDF_rem or t2EDF_rem <= t4EDF_rem or t2EDF_rem <= t5EDF_rem
-            t3EDF_rem_compare = t3EDF_rem <= t1EDF_rem or t3EDF_rem <= t2EDF_rem or t3EDF_rem <= t4EDF_rem or t3EDF_rem <= t5EDF_rem
-            t4EDF_rem_compare = t4EDF_rem <= t1EDF_rem or t4EDF_rem <= t2EDF_rem or t4EDF_rem <= t3EDF_rem or t4EDF_rem <= t5EDF_rem
-            t5EDF_rem_compare = t5EDF_rem <= t1EDF_rem or t5EDF_rem <= t2EDF_rem or t5EDF_rem <= t3EDF_rem or t5EDF_rem <= t4EDF_rem
+            t1EDF_rem_compare = t1EDF_rem <= t2EDF_rem or t1EDF_rem <= t3EDF_rem
+            t2EDF_rem_compare = t2EDF_rem <= t1EDF_rem or t2EDF_rem <= t3EDF_rem
+            t3EDF_rem_compare = t3EDF_rem <= t1EDF_rem or t3EDF_rem <= t2EDF_rem
+
             
             if(t1EDF_rem_compare and t1Runtime != t1Deadline_Ex[2]):
                 if(t1Runtime < t1Deadline_Ex[2] and i < newt1Deadline_Ex): #if runtime < execution time and i < deadline
@@ -335,16 +202,9 @@ def EDF(*args):
                 if(t3Runtime < t3Deadline_Ex[2] and i < newt3Deadline_Ex): #if runtime < execution time and i < deadline
                     t3Runtime = t3Runtime + 1
                     print(t3Deadline_Ex[0], " RunTime:", t3Runtime)
-            elif(t4EDF_rem_compare and t4Runtime != t4Deadline_Ex[2]):
-                if(t4Runtime < t4Deadline_Ex[2] and i < newt4Deadline_Ex): #if runtime < execution time and i < deadline
-                    t4Runtime = t4Runtime + 1
-                    print(t4Deadline_Ex[0]," RunTime:", t4Runtime)
-            elif(t5EDF_rem_compare and t5Runtime != t5Deadline_Ex[2]):
-                if(t5Runtime < t5Deadline_Ex[2] and i < newt5Deadline_Ex): #if runtime < execution time and i < deadline
-                    t5Runtime = t5Runtime + 1
-                    print(t5Deadline_Ex[0]," RunTime:", t5Runtime)
             else:
                 print("Idle")
+            
             
             #update deadline
             if(i == newt1Deadline_Ex): #if i == deadline, calculate new deadline and reset runtime
@@ -362,15 +222,6 @@ def EDF(*args):
                 print("new",t3Deadline_Ex[0],"Deadline:", newt3Deadline_Ex)
                 t3Runtime = 0
 
-            if(i == newt4Deadline_Ex): #if i == deadline, calculate new deadline and reset runtime
-                newt4Deadline_Ex = newt4Deadline_Ex + t4Deadline_Ex[1]
-                print("new", t4Deadline_Ex[0],"Deadline:", newt4Deadline_Ex)
-                t4Runtime = 0
-
-            if(i == newt5Deadline_Ex): #if i == deadline, calculate new deadline and reset runtime
-                newt5Deadline_Ex = newt5Deadline_Ex + t5Deadline_Ex[1]
-                print("new", t5Deadline_Ex[0],"Deadline:", newt5Deadline_Ex)
-                t5Runtime = 0
 
 
 
@@ -417,8 +268,6 @@ if __name__ == '__main__':
         w1Array = tasks[1].split()
         w2Array = tasks[2].split()
         w3Array = tasks[3].split()
-        w4Array = tasks[4].split()
-        w5Array = tasks[5].split()
 
         print('')
 
@@ -442,11 +291,6 @@ if __name__ == '__main__':
         print("Task 3 Array")
         print(w3Array)
 
-        print("Task 4 Array")
-        print(w4Array)
-
-        print("Task 5 Array")
-        print(w5Array)
 
         print('')
             
@@ -455,8 +299,6 @@ if __name__ == '__main__':
         t1Deadline_Ex = [w1Array[0], int(w1Array[1]), int(w1Array[2])]
         t2Deadline_Ex = [w2Array[0], int(w2Array[1]), int(w2Array[2])]
         t3Deadline_Ex = [w3Array[0], int(w3Array[1]), int(w3Array[2])]
-        t4Deadline_Ex = [w4Array[0], int(w4Array[1]), int(w4Array[2])]
-        t5Deadline_Ex = [w5Array[0], int(w5Array[1]), int(w5Array[2])]
 
         for i in range(hIntArray[0]):
 
@@ -472,22 +314,11 @@ if __name__ == '__main__':
                     t2Deadline_Ex = t3Deadline_Ex
                     t3Deadline_Ex = t
 
-                elif t4Deadline_Ex[1] < t3Deadline_Ex[1]:
-                    t = t3Deadline_Ex
-                    t3Deadline_Ex = t4Deadline_Ex
-                    t4Deadline_Ex = t
-
-                elif t5Deadline_Ex[1] < t4Deadline_Ex[1]:
-                    t = t4Deadline_Ex
-                    t4Deadline_Ex = t5Deadline_Ex
-                    t5Deadline_Ex = t
 
         print("Sorted Arrays")
         print(t1Deadline_Ex)
         print(t2Deadline_Ex)
         print(t3Deadline_Ex)
-        print(t4Deadline_Ex)
-        print(t5Deadline_Ex)
 
         print('')
                                 
@@ -502,9 +333,9 @@ if __name__ == '__main__':
             ##Pass arrays over and loop them in algo function
             ##Write to output in algo function
             print("EDF selected")
-            check_Util = EDF_Util(headerArray,t1Deadline_Ex, t2Deadline_Ex, t3Deadline_Ex, t4Deadline_Ex, t5Deadline_Ex)
+            check_Util = EDF_Util(headerArray,t1Deadline_Ex, t2Deadline_Ex, t3Deadline_Ex)
             if not check_Util:
-                EDF(headerArray,t1Deadline_Ex, t2Deadline_Ex, t3Deadline_Ex, t4Deadline_Ex, t5Deadline_Ex)
+                EDF(headerArray,t1Deadline_Ex, t2Deadline_Ex, t3Deadline_Ex)
             else:
                 print("Utilization inequality does not hold")
                 print("No Feasible Schedule")
@@ -515,13 +346,16 @@ if __name__ == '__main__':
 
             #Call RM algo
             print("RM selected")
-            check_Util = RM_Util(headerArray,t1Deadline_Ex, t2Deadline_Ex, t3Deadline_Ex, t4Deadline_Ex, t5Deadline_Ex)
+            RM(headerArray,t1Deadline_Ex, t2Deadline_Ex, t3Deadline_Ex)
+            
+            '''
+            check_Util = RM_Util(headerArray,t1Deadline_Ex, t2Deadline_Ex, t3Deadline_Ex)
             if not check_Util:
-                RM(headerArray,t1Deadline_Ex, t2Deadline_Ex, t3Deadline_Ex, t4Deadline_Ex, t5Deadline_Ex)
+                RM(headerArray,t1Deadline_Ex, t2Deadline_Ex, t3Deadline_Ex)
             else:
                 print("Utilization inequality does not hold")
                 print("No Feasible Schedule")
-
+            '''
 
 
 
