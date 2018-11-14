@@ -17,9 +17,14 @@ def energyCalcHF(exe_Time):
 
     energy = ((exeTime)*625)/1000
     return energy
-    
-    
-    
+
+def energyCalcIDLE(exe_Time):
+    exeTime = exe_Time
+
+    energyIdle = ((exeTime)*84)/1000
+    return energyIdle
+
+
 
 def string2Int(stringArray):
     list1 = stringArray
@@ -34,15 +39,15 @@ def string2Int(stringArray):
 
 #LCM method to determine the LCM for the range of time for the scheduling
 def LCM(numArray):
-    
+
     numArray.sort()
-        
+
     combo = numArray[0] * numArray[1] * numArray[2] * numArray[3]
 
     for x in range(numArray[3], combo + 1, numArray[3]):
         if x % numArray[0] == 0 and x % numArray[1] == 0 and x % numArray[2] == 0:
             return x
-    
+
 #RM check
 def RM_Util(*args):
 
@@ -100,27 +105,58 @@ def RM(*args):
         totalPeriod = 1000
         done = 0
         print("newt1Deadline_Ex:", newt1Deadline_Ex)
-        
+        preFlag = 0
+
         for i in range(1,totalPeriod+1):
 
-           
-            
+
+
             print("")
             print("Total Execution Time:", i)
-            
+
             if(t1Runtime < t1Deadline_Ex[2] and i < newt1Deadline_Ex): #if runtime < execution time and i < deadline
                 t1Runtime = t1Runtime + 1
                 print(t1Deadline_Ex[0]," RunTime:", t1Runtime)
 
-                start = t1Runtime
-                
-                
                 if(t1Runtime == 1):
-                    start = t1Runtime
-                    eStart = i
-                    print(t1Deadline_Ex[0]," Execution Start:", start, "\n") #terminal
 
-                    if(t4Runtime > 0 and t4Runtime < t4Deadline_Ex[2]):
+                    eStart = i
+                    print(t1Deadline_Ex[0]," Execution Start:",i, "\n") #terminal
+                    if(preFlag == 1):
+                        fileOut.write("\n")
+                    fileOut.write(str(eStart))
+                    fileOut.write(" ")
+                    fileOut.write(t1Deadline_Ex[0])
+                    fileOut.write(" ")
+                    fileOut.write(Frequency)
+                    fileOut.write(" ")
+
+
+                    if(t2Runtime > 0 and t2Runtime < t2Deadline_Ex[2]):
+                        ePreempt = i - 1
+                        print(t2Deadline_Ex[0]," Preempted:", ePreempt, "\n")
+
+                        fileOut.write(str(ePreempt))
+                        fileOut.write(" ")
+                        exeTime = ePreempt - eStart_t2
+                        eUsed = energyCalcHF(exeTime)
+                        fileOut.write(str(eUsed) + "J")
+                        fileOut.write("\n")
+                        preFlag = 1
+
+                    elif(t3Runtime > 0 and t3Runtime < t3Deadline_Ex[2]):
+                        ePreempt = i - 1
+                        print(t4Deadline_Ex[0]," Preempted:", ePreempt, "\n")
+
+                        fileOut.write(str(ePreempt))
+                        fileOut.write(" ")
+                        exeTime = ePreempt - eStart_t3
+                        eUsed = energyCalcHF(exeTime)
+                        fileOut.write(str(eUsed) + "J")
+                        fileOut.write("\n")
+                        preFlag = 1
+
+                    elif(t4Runtime > 0 and t4Runtime < t4Deadline_Ex[2]):
                         ePreempt = i - 1
                         print(t4Deadline_Ex[0]," Preempted:", ePreempt, "\n")
 
@@ -130,15 +166,27 @@ def RM(*args):
                         eUsed = energyCalcHF(exeTime)
                         fileOut.write(str(eUsed) + "J")
                         fileOut.write("\n")
+                        preFlag = 1
 
-                    fileOut.write(str(eStart))
-                    fileOut.write(" ")
-                    fileOut.write(t1Deadline_Ex[0])
-                    fileOut.write(" ")
-                    fileOut.write(Frequency)
-                    fileOut.write(" ")
+                    elif(t5Runtime > 0 and t5Runtime < t5Deadline_Ex[2]):
+                        ePreempt = i - 1
+                        print(t5Deadline_Ex[0]," Preempted:", ePreempt, "\n")
 
-                    
+                        fileOut.write(str(ePreempt))
+                        fileOut.write(" ")
+                        exeTime = ePreempt - eStart_t5
+                        eUsed = energyCalcHF(exeTime)
+                        fileOut.write(str(eUsed) + "J")
+                        fileOut.write("\n")
+                        preFlag = 1
+
+
+
+
+
+
+
+
 
 
                 if(t1Runtime == t1Deadline_Ex[2]):
@@ -150,22 +198,68 @@ def RM(*args):
                     eUsed = energyCalcHF(exeTime)
                     fileOut.write(str(eUsed) + "J")
                     fileOut.write("\n")
+                    #preFlag = 0
 
-                    
-               
+
+
             elif(t2Runtime < t2Deadline_Ex[2] and i < newt2Deadline_Ex): #if runtime < execution time and i < deadline
                 t2Runtime = t2Runtime + 1
                 print(t2Deadline_Ex[0]," RunTime:", t2Runtime)
 
                 if(t2Runtime == 1):
-                    eStart = i
+                    eStart_t2 = i
                     print(t2Deadline_Ex[0]," Execution Start:", i, "\n")
-                    fileOut.write(str(i))
-                    fileOut.write(" ")
-                    fileOut.write(t2Deadline_Ex[0])
-                    fileOut.write(" ")
-                    fileOut.write(Frequency)
-                    fileOut.write(" ")
+
+
+                    if(t3Runtime > 0 and t3Runtime < t3Deadline_Ex[2]):
+                        ePreempt = i - 1
+                        print(t3Deadline_Ex[0]," Preempted:", ePreempt, "\n")
+
+                        fileOut.write(str(ePreempt))
+                        fileOut.write(" ")
+                        exeTime = ePreempt - eStart_t3
+                        eUsed = energyCalcHF(exeTime)
+                        fileOut.write(str(eUsed) + "J")
+                        fileOut.write("\n")
+                        preFlag = 1
+
+                    elif(t4Runtime > 0 and t4Runtime < t4Deadline_Ex[2]):
+                        ePreempt = i - 1
+                        print(t4Deadline_Ex[0]," Preempted:", ePreempt, "\n")
+
+                        fileOut.write(str(ePreempt))
+                        fileOut.write(" ")
+                        exeTime = ePreempt - eStart_t4
+                        eUsed = energyCalcHF(exeTime)
+                        fileOut.write(str(eUsed) + "J")
+                        fileOut.write("\n")
+                        preFlag = 1
+
+
+
+                    elif(t5Runtime > 0 and t5Runtime < t5Deadline_Ex[2]):
+                        ePreempt = i - 1
+                        print(t5Deadline_Ex[0]," Preempted:", ePreempt, "\n")
+
+                        fileOut.write(str(ePreempt))
+                        fileOut.write(" ")
+                        exeTime = ePreempt - eStart_t5
+                        eUsed = energyCalcHF(exeTime)
+                        fileOut.write(str(eUsed) + "J")
+                        fileOut.write("\n")
+                        preFlag = 1
+                    else:
+                        fileOut.write(str(i))
+                        fileOut.write(" ")
+                        fileOut.write(t2Deadline_Ex[0])
+                        fileOut.write(" ")
+                        fileOut.write(Frequency)
+                        fileOut.write(" ")
+                        preFlag = 0
+
+
+
+
                 if(t2Runtime == t2Deadline_Ex[2]):
                     eEnd = i
                     fileOut.write(str(i))
@@ -176,20 +270,66 @@ def RM(*args):
                     eUsed = energyCalcHF(exeTime)
                     fileOut.write(str(eUsed) + "J")
                     fileOut.write("\n")
-                    
+                    #preFlag = 0
+
+                if(t2Runtime > 0 and preFlag == 1):
+                    preFlag = 0
+
+                    fileOut.write(str(i))
+                    fileOut.write(" ")
+                    fileOut.write(t2Deadline_Ex[0])
+                    fileOut.write(" ")
+                    fileOut.write(Frequency)
+                    fileOut.write(" ")
+
+
+
+
+
             elif(t3Runtime < t3Deadline_Ex[2] and i < newt3Deadline_Ex): #if runtime < execution time and i < deadline
                 t3Runtime = t3Runtime + 1
                 print(t3Deadline_Ex[0], " RunTime:", t3Runtime)
 
                 if(t3Runtime == 1):
-                    eStart = i
+                    eStart_t3 = i
                     print(t3Deadline_Ex[0]," Execution Start:", i, "\n")
-                    fileOut.write(str(i))
-                    fileOut.write(" ")
-                    fileOut.write(t3Deadline_Ex[0])
-                    fileOut.write(" ")
-                    fileOut.write(Frequency)
-                    fileOut.write(" ")
+
+
+                    if(t4Runtime > 0 and t4Runtime < t4Deadline_Ex[2]):
+                        ePreempt = i - 1
+                        print(t4Deadline_Ex[0]," Preempted:", ePreempt, "\n")
+
+                        fileOut.write(str(ePreempt))
+                        fileOut.write(" ")
+                        exeTime = ePreempt - eStart_t4
+                        eUsed = energyCalcHF(exeTime)
+                        fileOut.write(str(eUsed) + "J")
+                        fileOut.write("\n")
+                        preFlag = 1
+
+                    elif(t5Runtime > 0 and t5Runtime < t5Deadline_Ex[2]):
+                        ePreempt = i - 1
+                        print(t5Deadline_Ex[0]," Preempted:", ePreempt, "\n")
+
+                        fileOut.write(str(ePreempt))
+                        fileOut.write(" ")
+                        exeTime = ePreempt - eStart_t5
+                        eUsed = energyCalcHF(exeTime)
+                        fileOut.write(str(eUsed) + "J")
+                        fileOut.write("\n")
+                        preFlag = 1
+
+
+                    else:
+                        fileOut.write(str(i))
+                        fileOut.write(" ")
+                        fileOut.write(t3Deadline_Ex[0])
+                        fileOut.write(" ")
+                        fileOut.write(Frequency)
+                        fileOut.write(" ")
+                        preFlag = 0
+
+
                 if(t3Runtime == t3Deadline_Ex[2]):
                     eEnd = i
                     fileOut.write(str(i))
@@ -199,8 +339,18 @@ def RM(*args):
                     eUsed = energyCalcHF(exeTime)
                     fileOut.write(str(eUsed) + "J")
                     fileOut.write("\n")
-                    
-                    
+                    #preFlag = 0
+
+                if(t3Runtime > 0 and preFlag == 1):
+                    preFlag = 0
+                    fileOut.write(str(i))
+                    fileOut.write(" ")
+                    fileOut.write(t3Deadline_Ex[0])
+                    fileOut.write(" ")
+                    fileOut.write(Frequency)
+                    fileOut.write(" ")
+
+
             elif(t4Runtime < t4Deadline_Ex[2] and i < newt4Deadline_Ex): #if runtime < execution time and i < deadline
                 t4Runtime = t4Runtime + 1
                 print(t4Deadline_Ex[0]," RunTime:", t4Runtime)
@@ -208,6 +358,31 @@ def RM(*args):
                 if(t4Runtime == 1):
                     eStart_t4 = i
                     print(t4Deadline_Ex[0], " Execution Start:", i, "\n")
+
+                    if(t5Runtime > 0 and t5Runtime < t5Deadline_Ex[2]):
+                        ePreempt = i - 1
+                        print(t5Deadline_Ex[0]," Preempted:", ePreempt, "\n")
+
+
+                        fileOut.write(str(ePreempt))
+                        fileOut.write(" ")
+                        exeTime = ePreempt - eStart_t5
+                        eUsed = energyCalcHF(exeTime)
+                        fileOut.write(str(eUsed) + "J")
+                        fileOut.write("\n")
+                        preFlag = 1
+
+                    if(preFlag == 0):
+                        fileOut.write(str(i))
+                        fileOut.write(" ")
+                        fileOut.write(t4Deadline_Ex[0])
+                        fileOut.write(" ")
+                        fileOut.write(Frequency)
+                        fileOut.write(" ")
+                        #preFlag = 1
+
+                if(t4Runtime > 0 and preFlag == 1):
+                    preFlag = 0
                     fileOut.write(str(i))
                     fileOut.write(" ")
                     fileOut.write(t4Deadline_Ex[0])
@@ -215,22 +390,31 @@ def RM(*args):
                     fileOut.write(Frequency)
                     fileOut.write(" ")
 
+
+
+
                 if(t4Runtime == t4Deadline_Ex[2]):
-                    eEnd = i
+                    eEnd = i-1
                     fileOut.write(str(i))
                     fileOut.write(" ")
-                    print(t4Deadline_Ex[0], " Execution End:", i , "\n")
+                    print(t4Deadline_Ex[0], " Execution End:", eEnd , "\n")
                     exeTime = eEnd - eStart_t4
                     eUsed = energyCalcHF(exeTime)
-                    fileOut.write(str(eUsed) + "J")                    
+                    fileOut.write(str(eUsed) + "J")
+
                     fileOut.write("\n")
-                
+
+                    #preFlag = 0
+
+
+
+
             elif(t5Runtime < t5Deadline_Ex[2] and i < newt5Deadline_Ex): #if runtime < execution time and i < deadline
                 t5Runtime = t5Runtime + 1
                 print(t5Deadline_Ex[0]," RunTime:", t5Runtime)
 
                 if(t5Runtime == 1):
-                    eStart = i
+                    eStart_t5 = i
                     print(t5Deadline_Ex[0]," Execution Start:", i, "\n")
                     fileOut.write(str(i))
                     fileOut.write(" ")
@@ -238,6 +422,7 @@ def RM(*args):
                     fileOut.write(" ")
                     fileOut.write(Frequency)
                     fileOut.write(" ")
+
                 if(t5Runtime == t5Deadline_Ex[2]):
                     eEnd = i
                     fileOut.write(str(i))
@@ -247,10 +432,21 @@ def RM(*args):
                     eUsed = energyCalcHF(exeTime)
                     fileOut.write(str(eUsed) + "J")
                     fileOut.write("\n")
+                    #preFlag = 0
+
+                if(t5Runtime > 0 and preFlag == 1):
+                    preFlag = 0
+                    fileOut.write(str(i))
+                    fileOut.write(" ")
+                    fileOut.write(t5Deadline_Ex[0])
+                    fileOut.write(" ")
+                    fileOut.write(Frequency)
+                    fileOut.write(" ")
+
             else:
                 print("Idle")
 
-            
+
             if(i == newt1Deadline_Ex): #if i == deadline, calculate new deadline and reset runtime
                 newt1Deadline_Ex = newt1Deadline_Ex + t1Deadline_Ex[1]
                 print("new", t1Deadline_Ex[0],"Deadline:", newt1Deadline_Ex)
@@ -276,14 +472,14 @@ def RM(*args):
                 print("new", t5Deadline_Ex[0],"Deadline:", newt5Deadline_Ex)
                 t5Runtime = 0
 
-        
-        
-                
-    
-    
+
+
+
+
+
 
 def EDF_Util(*args):
-    
+
     hArray = args[0]
     t1Deadline_Ex = args[1]
     t2Deadline_Ex = args[2]
@@ -339,9 +535,9 @@ def EDF(*args):
         totalPeriod = 1000
         done = 0
         print("newt1Deadline_Ex:", newt1Deadline_Ex)
-        
+
         for i in range(1,totalPeriod+1):
-            
+
             print("")
             print("Total Execution Time:", i)
 
@@ -352,7 +548,7 @@ def EDF(*args):
             t4EDF_rem = newt4Deadline_Ex - i
             t5EDF_rem = newt5Deadline_Ex - i
 
-            #when the runtime equals execution time, add the deadline to the remaining time 
+            #when the runtime equals execution time, add the deadline to the remaining time
             if(t1Runtime == t1Deadline_Ex[2]):
                 t1EDF_rem = t1EDF_rem + t1Deadline_Ex[1]
             if(t2Runtime == t2Deadline_Ex[2]):
@@ -377,7 +573,7 @@ def EDF(*args):
             t3EDF_rem_compare = t3EDF_rem <= t1EDF_rem or t3EDF_rem <= t2EDF_rem or t3EDF_rem <= t4EDF_rem or t3EDF_rem <= t5EDF_rem
             t4EDF_rem_compare = t4EDF_rem <= t1EDF_rem or t4EDF_rem <= t2EDF_rem or t4EDF_rem <= t3EDF_rem or t4EDF_rem <= t5EDF_rem
             t5EDF_rem_compare = t5EDF_rem <= t1EDF_rem or t5EDF_rem <= t2EDF_rem or t5EDF_rem <= t3EDF_rem or t5EDF_rem <= t4EDF_rem
-            
+
             if(t1EDF_rem_compare and t1Runtime != t1Deadline_Ex[2]):
                 if(t1Runtime < t1Deadline_Ex[2] and i < newt1Deadline_Ex): #if runtime < execution time and i < deadline
                     t1Runtime = t1Runtime + 1
@@ -400,7 +596,7 @@ def EDF(*args):
                     print(t5Deadline_Ex[0]," RunTime:", t5Runtime)
             else:
                 print("Idle")
-            
+
             #update deadline
             if(i == newt1Deadline_Ex): #if i == deadline, calculate new deadline and reset runtime
                 newt1Deadline_Ex = newt1Deadline_Ex + t1Deadline_Ex[1]
@@ -439,11 +635,11 @@ if __name__ == '__main__':
     ##Sample Command: $ python ./program.py input1.txt EDF
 
     argList = sys.argv
-    
+
     if argList[1:]:
         inputFile = argList[1]
         print('argument1:', inputFile)
-        
+
         if argList[2:]:
             algoSelect = argList[2]
             print('argument2:', algoSelect)
@@ -457,10 +653,10 @@ if __name__ == '__main__':
     print("Reading " + inputFile+ "\n")
     print("The user has selected the " + algoSelect + " Scheduling Algorithm")
     ##END SECTION
-    
-    
+
+
     with open(inputFile , 'r') as file:               #input file is open in read mode
-            
+
 
         tasks=[]    #array to store each of the lines in input file
 
@@ -504,9 +700,9 @@ if __name__ == '__main__':
         print(w5Array)
 
         print('')
-            
+
         #Sorting the Deadlines by Ascending Order for priority
-        #Done regardless of EDF or RM                    
+        #Done regardless of EDF or RM
         t1Deadline_Ex = [w1Array[0], int(w1Array[1]), int(w1Array[2])]
         t2Deadline_Ex = [w2Array[0], int(w2Array[1]), int(w2Array[2])]
         t3Deadline_Ex = [w3Array[0], int(w3Array[1]), int(w3Array[2])]
@@ -518,7 +714,7 @@ if __name__ == '__main__':
             for j in range(0, hIntArray[0] - i - 1):
                 t = []
                 if t2Deadline_Ex[1] < t1Deadline_Ex[1]:
-                    t = t1Deadline_Ex     
+                    t = t1Deadline_Ex
                     t1Deadline_Ex = t2Deadline_Ex
                     t2Deadline_Ex = t
 
@@ -545,10 +741,10 @@ if __name__ == '__main__':
         print(t5Deadline_Ex)
 
         print('')
-                                
-        ##Sorting END   
 
-        #scheduling algorithms                    
+        ##Sorting END
+
+        #scheduling algorithms
         if algoSelect == 'EDF':
             if argList[3:] and algoEE == 'EE':
                 print('HEE HEE')
@@ -576,9 +772,3 @@ if __name__ == '__main__':
             else:
                 print("Utilization inequality does not hold")
                 print("No Feasible Schedule")
-
-
-
-
-
-
