@@ -1,17 +1,5 @@
 import sys
-##
-##file= open('input1.txt','r')
-##fileOut = open('output1.txt', 'w')
-##
-##fileOut.write('hello test')
-##
-##fileLines = file.readlines()
-##for lines in fileLines:
-##        output = lines
-##        print(lines, end= "")
-##
-##
-##file.close()
+
 def energyCalcHF(exe_Time):
     exeTime = exe_Time
 
@@ -99,8 +87,6 @@ def RM(*args):
 
         t5Runtime = 0
         newt5Deadline_Ex = t5Deadline_Ex[1]
-
-    ##35 times within 300 time units
 
         totalPeriod = 1000
         idleTime = 0
@@ -611,8 +597,6 @@ def EDF(*args):
 
         t5Runtime = 0
         newt5Deadline_Ex = t5Deadline_Ex[1]
-
-    ##35 times within 300 time units
 
         totalPeriod = 1000
         idleTime = 0
@@ -1128,7 +1112,6 @@ if __name__ == '__main__':
         tasks=[]    #array to store each of the lines in input file
 
         for lines in file:  #for loop read lines in file only containing numbers
-            #results = re.findall(r"[-+]?\d*\.\d+|\d+", lines)
             tasks.append(lines)
 
         headerArray = tasks[0].split()
